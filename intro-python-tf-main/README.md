@@ -1,8 +1,8 @@
 # intro-python-tf
  
 🙋‍♀️ Comisión: 1ra Generación Introducción a Python
-📅 Inicio de cursada: 26/10/2021
-⏰ Días de cursada: Martes y jueves de 19:00 a 22:00hs (GMT -3)
+📅 Inicio del curso: 26/10/2021
+⏰ Días de clase: Martes y jueves de 19:00 a 22:00hs (GMT -3)
 👩‍🏫 Profesora: Maria de las Mercedes Iervasi (Meri)
 
 # Proyecto Final de Python
