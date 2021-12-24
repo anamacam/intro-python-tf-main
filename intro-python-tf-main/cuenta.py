@@ -14,21 +14,27 @@ class Cuenta(object):
 
     def aplicar_gasto(self, monto):  # retirar
         # TODO: Chequear si la cuenta está activa
+        if self.activa:
+            return True
         self.cantidad = self.cantidad - monto
         self.crear_movimiento("Estamos aplicando un gasto", monto)
 
     def aplicar_deposito(self, monto):  # ingresar
         # TODO: Chequear si la cuenta está activa
+        if self.activa:
+            return True
         self.cantidad = self.cantidad + monto
         self.crear_movimiento("Estamos aplicando un deposito", monto)
 
     def desactivar(self):
         # TODO: Solo si el saldo es cero
-        self.activa = False
+        if self.cantidad == 0:
+            self.activa = False
 
     def activar(self):
         # TODO: Solo si el saldo es cero
-        self.activa = True
+        if self.cantidad == 0:
+            self.activa = True
 
     def crear_movimiento(self, descripcion, monto):
         movimiento = MovimientoCuenta(descripcion, monto)
@@ -36,7 +42,7 @@ class Cuenta(object):
 
     def __str__(self):
         # TODO: Completar para que quede mejor con nro de cuenta
-        print(f"CUENTA comun {self.cantidad}")
+        print(f"CUENTA comun {self.cantidad},{self.numero_de_cuenta}")
 
 
 class CuentaJoven(Cuenta):
@@ -47,7 +53,7 @@ class CuentaJoven(Cuenta):
 
     def __str__(self):
         # TODO: Completar para que quede mejor
-        print(f"CUENTA JOVEN {self.cantidad}")
+        print(f"CUENTA JOVEN {self.cantidad},{self.numero_de_cuenta,},{self.bonificacion}")
 
 
 class MovimientoCuenta(object):
