@@ -25,18 +25,48 @@ def crear_cuentas():
 
 
 def procesar_gastos(cuentas, archivo):
-    # TODO: procesar linea a linea del archivo, y aplicar a cada cuenta de las personas
-    # Return: debe devolver las cuentas actualizadas
-    pass
+    with open(archivo) as f:
+        reader = csv.reader(f)
+    titles = next(reader)
+    for cuentas in cuentas:
+        for line in reader:
+            if cuentas.dni == line[1]:
+                total_moviemientos=0
+                descripcion_movimiento = "gasto"
+                for movimiento in cuentas.movimientos:
+                    if descripcion_movimiento in movimiento.descripcion:
+                        total_moviemientos = total_moviemientos + movimiento.monto
+                cuentas.cantidad = cuentas.cantidad - total_moviemientos
+    return cuentas
 
 
 def procesar_depositos(cuentas, archivo):
-    # TODO: procesar linea a linea del archivo, y aplicar a cada cuenta de las personas
-    # Return: debe devolver las cuentas actualizadas
-    pass
+    with open(archivo) as f:
+        reader = csv.reader(f)
+    titles = next(reader)
+    for cuentas in cuentas:
+        for line in reader:
+            if cuentas.dni == line[1]:
+                total_moviemientos=0
+                descripcion_movimiento = "deposito"
+                for movimiento in cuentas.movimientos:
+                    if descripcion_movimiento in movimiento.descripcion:
+                        total_moviemientos = total_moviemientos + movimiento.monto
+                cuentas.cantidad = cuentas.cantidad + total_moviemientos
+        return cuentas
 
 
 def procesar_transferencias(cuentas, archivo):
-    # TODO: procesar linea a linea del archivo, y aplicar a cada cuenta de las personas
-    # Return: debe devolver las cuentas actualizadas
-    pass
+    with open(archivo) as f:
+        reader = csv.reader(f)
+    titulos = next(reader)
+    for cuentas in cuentas:
+        for line in reader:
+            if cuentas.dni == line[1]:
+                total_moviemientos=0
+                descripcion_movimiento = "deposito"
+                for movimiento in cuentas.movimientos:
+                    if descripcion_movimiento in movimiento.descripcion:
+                        total_moviemientos = total_moviemientos + movimiento.monto
+                cuentas.cantidad = cuentas.cantidad + total_moviemientos
+    return cuentas
