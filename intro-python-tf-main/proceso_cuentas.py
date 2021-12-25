@@ -27,7 +27,7 @@ def crear_cuentas():
 def procesar_gastos(cuentas, archivo):
     with open(archivo) as f:
         reader = csv.reader(f)
-    titles = next(reader)
+    titulos = next(reader)
     for cuentas in cuentas:
         for line in reader:
             if cuentas.dni == line[1]:
@@ -43,7 +43,7 @@ def procesar_gastos(cuentas, archivo):
 def procesar_depositos(cuentas, archivo):
     with open(archivo) as f:
         reader = csv.reader(f)
-    titles = next(reader)
+    titulos = next(reader)
     for cuentas in cuentas:
         for line in reader:
             if cuentas.dni == line[1]:
