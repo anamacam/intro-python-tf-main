@@ -26,7 +26,7 @@ def crear_cuentas():
 
 def procesar_gastos(cuentas, archivo):
     gastos = {}
-    archivo = open("personas.csv", "r")
+    archivo = open("archivo.csv", "r")
     archivo_csv = csv.reader(archivo)
     for nombre, dni, fecha_nacimiento in archivo_csv:
         gastos= Gastos(cantidad, gastos)
