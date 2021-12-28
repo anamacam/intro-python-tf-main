@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # author: Ana
 import csv
+
 from persona import Persona
 
 
@@ -28,23 +29,22 @@ def procesar_gastos(cuentas, archivo):
     gastos = {}
     archivo = open("archivo.csv", "r")
     archivo_csv = csv.reader(archivo)
-    for nombre, dni, fecha_nacimiento in archivo_csv:
-        gastos= Gastos(cantidad, gastos)
+    for gastos, dni, in archivo_csv:
         if gastos in gastos:
-         gastos.aplicar_gastos()
-         persona[dni] = gastos
+            cuentas.aplicar_gastos()
+            gastos[dni] = gastos
     archivo.close()
     return gastos
+
 
 def procesar_depositos(cuentas, archivo):
     depositos = {}
     archivo = open("archivo.csv", "r")
     archivo_csv = csv.reader(archivo)
-    for nombre, dni, fecha_nacimiento in archivo_csv:
-        depositos = Depositos(cantidad, monto)
+    for depositos, dni in archivo_csv:
         if depositos in depositos:
-         depositos.aplicar_depositos()
-         persona[dni] = depositos
+            cuentas.aplicar_depositos()
+            depositos[dni] = depositos
     archivo.close()
     return depositos
 
@@ -53,10 +53,9 @@ def procesar_transferencias(cuentas, archivo):
     tranferencias = {}
     archivo = open("archivo.csv", "r")
     archivo_csv = csv.reader(archivo)
-    for nombre, dni, fecha_nacimiento in archivo_csv:
-        tranferencias = Tranferencias(cantidad, monto)
+    for tranferencias, dni, in archivo_csv:
         if tranferencias in tranferencias:
-            tranferencias.aplicar_transferencia()
-            persona[dni] = tranferencias
+            cuentas.aplicar_transferencia()
+            tranferencias[dni] = tranferencias
     archivo.close()
     return tranferencias
