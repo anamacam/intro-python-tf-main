@@ -44,11 +44,11 @@ class Persona(db.Model):
         return int(delta.days/365)
 
     def es_mayor_de_edad(self):
-        return self.edad >= 18
+        return self.edad <= 18
 
     def crear_cuenta(self):
         edad = int(input("¿Cuántos años tiene? "))
-        if edad < 18:
+        if edad > 18:
             print("Cuenta comun")
         else:
             print("Cuenta joven")
@@ -63,5 +63,5 @@ class Persona(db.Model):
         return todos_los_movimientos
 
     def saludo(self):
-        return f"¡Hola! {self.nombre}, en este momento la temperatura es de: {clima_fecha.traer_fecha()} , " \
+        return f"¡Hola! {self.nombre}, en este momento la temperatura es de:{clima_fecha.traer_fecha()} , " \
                    f"en la ciudad de {self.ciudad}:"
