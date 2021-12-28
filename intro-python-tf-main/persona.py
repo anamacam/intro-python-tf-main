@@ -10,21 +10,25 @@ from cuenta import Cuenta
 
 
 def convertir_fecha(string_fecha):
-    # TODO: que pasa si la fecha no tiene los 10 caracteres esperados?
-    anio = string_fecha[0:4]
-    mes = string_fecha[5:7]
-    dia = string_fecha[8:10]
-    return datetime.date(int(anio), int(mes), int(dia))
+    try:
+        anio = string_fecha[0:4]
+        mes = string_fecha[5:7]
+        dia = string_fecha[8:10]
+        return datetime.date(int(anio), int(mes), int(dia))
+    except Exception as error:
+        print(error)
+        return f"¡Oops! fecha no valida. Intente nuevamente"
 
 
 class Persona(db.Model):
+
     __tablename__ = 'personas'
     id = Column(Integer, primary_key=True)
     nombre = Column(String(100), nullable=False)
     fecha_nacimiento = Column(DateTime, nullable=False)
     dni = Column(String(8), nullable=False)
 
-    def __init__(self, dni, nombre, str_fecha_nacimiento):
+    def __init__(self, dni, nombre, str_fecha_nacimiento,):
         self.nombre = nombre
         self.fecha_nacimiento = convertir_fecha(str_fecha_nacimiento)
         self.dni = dni
@@ -43,7 +47,12 @@ class Persona(db.Model):
         return self.edad >= 18
 
     def crear_cuenta(self):
-        # TODO: Segun la edad, debería crear Cuenta o CuentaJoven()
+        edad = int(input("¿Cuántos años tiene? "))
+        if edad < 18:
+            print("Cuenta comun")
+        else:
+            print("Cuenta joven")
+
         cuenta = Cuenta()
         self.cuentas.append(cuenta)
 
@@ -54,5 +63,5 @@ class Persona(db.Model):
         return todos_los_movimientos
 
     def saludo(self):
-        # TODO: Saludo que indique hora fecha y clima
-        return f"Persona saludando {self.nombre}"
+        return f"¡Hola! {self.nombre}, en este momento la temperatura es de: {clima_fecha.traer_fecha()} , " \
+                   f"en la ciudad de {self.ciudad}:"
