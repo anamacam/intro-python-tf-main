@@ -25,48 +25,38 @@ def crear_cuentas():
 
 
 def procesar_gastos(cuentas, archivo):
-    with open(archivo) as f:
-        reader = csv.reader(f)
-    titulos = next(reader)
-    for cuentas in cuentas:
-        for line in reader:
-            if cuentas.dni == line[1]:
-                total_moviemientos=0
-                descripcion_movimiento = "gasto"
-                for movimiento in cuentas.movimientos:
-                    if descripcion_movimiento in movimiento.descripcion:
-                        total_moviemientos = total_moviemientos + movimiento.monto
-                cuentas.cantidad = cuentas.cantidad - total_moviemientos
-    return cuentas
-
+    gastos = {}
+    archivo = open("personas.csv", "r")
+    archivo_csv = csv.reader(archivo)
+    for nombre, dni, fecha_nacimiento in archivo_csv:
+        gastos= Gastos(cantidad, gastos)
+        if gastos in gastos:
+         gastos.aplicar_gastos()
+         persona[dni] = gastos
+    archivo.close()
+    return gastos
 
 def procesar_depositos(cuentas, archivo):
-    with open(archivo) as f:
-        reader = csv.reader(f)
-    titulos = next(reader)
-    for cuentas in cuentas:
-        for line in reader:
-            if cuentas.dni == line[1]:
-                total_moviemientos=0
-                descripcion_movimiento = "deposito"
-                for movimiento in cuentas.movimientos:
-                    if descripcion_movimiento in movimiento.descripcion:
-                        total_moviemientos = total_moviemientos + movimiento.monto
-                cuentas.cantidad = cuentas.cantidad + total_moviemientos
-        return cuentas
+    depositos = {}
+    archivo = open("archivo.csv", "r")
+    archivo_csv = csv.reader(archivo)
+    for nombre, dni, fecha_nacimiento in archivo_csv:
+        depositos = Depositos(cantidad, monto)
+        if depositos in depositos:
+         depositos.aplicar_depositos()
+         persona[dni] = depositos
+    archivo.close()
+    return depositos
 
 
 def procesar_transferencias(cuentas, archivo):
-    with open(archivo) as f:
-        reader = csv.reader(f)
-    titulos = next(reader)
-    for cuentas in cuentas:
-        for line in reader:
-            if cuentas.dni == line[1]:
-                total_moviemientos=0
-                descripcion_movimiento = "deposito"
-                for movimiento in cuentas.movimientos:
-                    if descripcion_movimiento in movimiento.descripcion:
-                        total_moviemientos = total_moviemientos + movimiento.monto
-                cuentas.cantidad = cuentas.cantidad + total_moviemientos
-    return cuentas
+    tranferencias = {}
+    archivo = open("archivo.csv", "r")
+    archivo_csv = csv.reader(archivo)
+    for nombre, dni, fecha_nacimiento in archivo_csv:
+        tranferencias = Tranferencias(cantidad, monto)
+        if tranferencias in tranferencias:
+            tranferencias.aplicar_transferencia()
+            persona[dni] = tranferencias
+    archivo.close()
+    return tranferencias
