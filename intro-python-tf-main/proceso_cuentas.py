@@ -26,36 +26,45 @@ def crear_cuentas():
 
 
 def procesar_gastos(cuentas, archivo):
-    gastos = {}
-    archivo = open("archivo.csv", "r")
-    archivo_csv = csv.reader(archivo)
-    for gastos, dni, in archivo_csv:
-        if gastos in gastos:
-            cuentas.aplicar_gastos()
-            gastos[dni] = gastos
-    archivo.close()
-    return gastos
+    archivo = open("gastos.csv")
+    primer_linea = True
+    for linea in archivo:
+        if not primer_linea:
+            nro_cuenta, importe_gasto = linea.replace('\n', '').split(',')
+            importe_gasto_int = float(importe_gasto)
+            cuentas_actualizadas = aplicar_gastos(cuentas, nro_cuenta, importe_gasto_int)
+        else:
+            primer_linea = False
+        archivo.close()
+        return f"cuentas actualizada"
 
 
-def procesar_depositos(cuentas, archivo):
-    depositos = {}
-    archivo = open("archivo.csv", "r")
-    archivo_csv = csv.reader(archivo)
-    for depositos, dni in archivo_csv:
-        if depositos in depositos:
-            cuentas.aplicar_depositos()
-            depositos[dni] = depositos
-    archivo.close()
-    return depositos
+def procesar_depositos(cuentas, archivo,importe_deposito_int):
+    archivo = open("depositos.csv")
+    primer_linea = True
+    for linea in archivo:
+        if not primer_linea:
+            nro_cuenta, monto_deposito = linea.replace('\n', '').split(',')
+            importe_deposito_int = float(monto_deposito)
+            cuentas_actualizadas = aplicar_depositos(cuentas, nro_cuenta, importe_deposito_int)
+        else:
+            primer_linea = False
+        archivo.close()
+    return f"cuenta actualizada"
 
 
 def procesar_transferencias(cuentas, archivo):
-    tranferencias = {}
-    archivo = open("archivo.csv", "r")
-    archivo_csv = csv.reader(archivo)
-    for tranferencias, dni, in archivo_csv:
-        if tranferencias in tranferencias:
-            cuentas.aplicar_transferencia()
-            tranferencias[dni] = tranferencias
-    archivo.close()
-    return tranferencias
+    archivo = open("transferencias.csv")
+    primer_linea = True
+    for linea in archivo:
+        if not primer_linea:
+            nro_cuenta, monto_deposito = linea.replace('\n', '').split(',')
+            importe_deposito_int = float(monto_deposito)
+            cuentas_actualizadas = aplicar_depositos(cuentas, nro_cuenta, importe_deposito_int)
+        else :
+            primer_linea:
+            nro_cuenta, monto_gasto = linea.replace('\n', '').split(',')
+            importe_gasto_int = float(monto_gasto)
+            cuentas_actualizadas = aplicar_depositos(cuentas, nro_cuenta, importe_gasto_int)
+        archivo.close()
+    return f"cuenta actualizada"
