@@ -30,9 +30,9 @@ def procesar_gastos(cuentas, archivo):
     personas = {}
     archivo = open("gastos.csv", "r")
     archivo_csv = csv.reader(archivo)
-    for dni, monto in archivo_csv:
-        gasto = Gasto(dni, monto)
-        gasto.aplicar_gasto()
+    for dni, gastos in archivo_csv:
+        retiro = Gasto(dni, gastos)
+        retiro.aplicar_gasto()
         personas[dni] = gastos
     archivo.close()
     return f"cuenta actualizada"
@@ -43,8 +43,8 @@ def procesar_depositos(cuentas, archivo,importe_deposito_int):
     personas = {}
     archivo = open("depositos.csv", "r")
     archivo_csv = csv.reader(archivo)
-    for dni, monto in archivo_csv:
-        deposito = Deposito(dni, monto)
+    for dni, depositos in archivo_csv:
+        deposito = Deposito(dni, deposito)
         deposito.aplicar_deposito()
         personas[dni] = depositos
     archivo.close()
@@ -57,7 +57,7 @@ def procesar_transferencias(cuentas, archivo):
     archivo = open("transferencias.csv", "r")
     archivo_csv = csv.reader(archivo)
     for dni, monto in archivo_csv:
-        transferencia = Transferencia(dni, monto)
+        transferencia = Transferencia(dni, tranferencia)
         transferencia.aplicar_deposito()
         personas[dni] = transferencias
     archivo.close()
