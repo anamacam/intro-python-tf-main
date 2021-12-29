@@ -56,7 +56,7 @@ def procesar_transferencias(cuentas, archivo):
     personas = {}
     archivo = open("transferencias.csv", "r")
     archivo_csv = csv.reader(archivo)
-    for dni, monto in archivo_csv:
+    for dni, transferencia in archivo_csv:
         transferencia = Transferencia(dni, tranferencia)
         transferencia.aplicar_deposito()
         personas[dni] = transferencias
